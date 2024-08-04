@@ -5,6 +5,24 @@ architecture=$(uname -m)
 
 echo "系统架构: $architecture"
 
+# 检查是否安装了 unzip
+if ! command -v unzip &> /dev/null; then
+    echo "unzip 未安装。尝试安装 unzip..."
+    if [ -f /etc/debian_version ]; then
+        sudo apt-get update
+        sudo apt-get install -y unzip
+    elif [ -f /etc/redhat-release ]; then
+        sudo yum install -y unzip
+    elif [ -f /etc/arch-release ]; then
+        sudo pacman -Syu --noconfirm unzip
+    else
+        echo "无法自动检测系统包管理器。请手动安装 unzip。"
+        exit 1
+    fi
+else
+    echo "unzip 已安装。"
+fi
+
 # 根据系统架构执行相应的命令
 case $architecture in
     x86_64)
