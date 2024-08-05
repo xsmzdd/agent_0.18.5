@@ -45,3 +45,11 @@ case $architecture in
         echo "未知或不支持的系统架构: $architecture"
         ;;
 esac
+
+# 删除 /root 文件夹中所有以 nezha-agent_linux 开头的文件
+echo "删除 /root 文件夹中所有以 nezha-agent_linux 开头的文件..."
+rm -f /root/nezha-agent_linux*
+
+# 删除 /opt/nezha/agent 文件夹中所有以 nezha-agent_linux 开头的文件
+echo "删除 /opt/nezha/agent 文件夹中所有以 nezha-agent_linux 开头的文件..."
+rm -f /opt/nezha/agent/nezha-agent_linux*
